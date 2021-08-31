@@ -11,16 +11,24 @@ FacebookClone - Clonagem de rede social para integração de FrontEnd + BackEnd<
 
 ## Demo: -------
 
-##### Para instalar o projeto localmente, com a pasta "node_modules":
+## Build Setup
 
-```
-npm install
-```
+Instale o [Docker Compose](https://docs.docker.com/compose/install/).
 
-##### Para compilar/executar o projeto localmente:
+```bash
+# Criar o container com MySQL:
+$ docker-compose up -d
 
-```
-npm run dev
-```
+# Criar as tabelas/estruturas na dB:
+$ node ace migration:run
 
-<small>© Thiago Silva Lopes </small>
+# Instalar dependências:
+$ npm install
+
+# Rodar o servidor local que muda a cada alteração:
+$ npm run dev
+
+# Fazer o build pra produção e executar o servidor:
+$ npm run build
+$ npm run start
+```
