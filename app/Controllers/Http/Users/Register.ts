@@ -1,6 +1,6 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import { StoreValidator } from 'App/Validators/User/Register'
-import { User } from 'App/Models'
+import { StoreValidator, UpdateValidator } from 'App/Validators/User/Register'
+import { User, UserKey } from 'App/Models'
 //Gera id únicos e dados falsos/provisórios para testes auto
 import faker from 'faker'
 //Módulo de e-mails do Adonis:
@@ -37,7 +37,36 @@ export default class RegisterController {
     })
   }
 
-  public async show({}: HttpContextContract) {}
+  public async show({ params }: HttpContextContract) {
+    //Verifica se o userY com a keyX existe na dB:
+    const userKey = await UserKey.findByOrFail('key', params.key)
+    //Carrega o usuário a partir da key dele:
+    await userKey.load('user')
 
-  public async update({}: HttpContextContract) {}
+    return userKey.user
+  }
+
+  public async update({ request, response }: HttpContextContract) {
+    const { key, name, password } = await request.validate(UpdateValidator)
+
+    //Verifica se o userY com a keyX existe na dB:
+    const userKey = await UserKey.findByOrFail('key', key)
+    //Carrega o usuário a partir da key dele:
+    await userKey.load('user')
+
+    /* Cria um username pro usuário:
+    a partir do espaço entre as palavras do seu nome,
+    pegando a primeira palavra, + o horário da alteração (para que ele seja
+    único :D)*/
+    const username = name.split('')[0].toLocaleLowerCase() + new Date().getTime()
+
+    //Atualiza o nome, senha e username do usuário:
+    userKey.user.merge({ name, password, username })
+    await userKey.user.save()
+
+    //Deleta a chave única temporária desse usuário para ativação do e-mail:
+    await userKey.delete()
+
+    return response.ok({ message: 'Usuário atualizado :D' })
+  }
 }
