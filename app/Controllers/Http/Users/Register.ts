@@ -5,35 +5,53 @@ import { User, UserKey } from 'App/Models'
 import faker from 'faker'
 //Módulo de e-mails do Adonis:
 import Mail from '@ioc:Adonis/Addons/Mail'
+//Para usar no transaction:
+import Database from '@ioc:Adonis/Lucid/Database'
 
 export default class RegisterController {
   public async store({ request }: HttpContextContract) {
-    const { email, redirectUrl } = await request.validate(StoreValidator)
-    const user = await User.create({ email })
+    /* Database.transaction() -> Esse método serve quando
+    sempre que tentarmos fazer alguma ação na dB, e ela não
+    for bem sucedida, tal ação seja desfeita, invés de permanecer
+    mesmo que seus primeiros códigos, na dB. */
+    await Database.transaction(async (trx) => {
+      //Valida o usuário com o validator:
+      const { email, redirectUrl } = await request.validate(StoreValidator)
+      const user = new User()
 
-    await user.save()
+      /* Coloca a criação do usuário como uma transaction:
+      Se qualquer coisa abaixo dessa linha de código, DENTRO 
+      dessa transaction FALHAR (como o e-mail de confirmação
+      não puder ser enviado por exemplo), então tudo que foi
+      feito é  desfeito e não altera em NADA a dB: */
+      user.useTransaction(trx)
 
-    //Pega os relacionamentos do user e uma nova key:
-    const key = faker.datatype.uuid() + user.id
-    user.related('keys').create({ key })
+      //Salva o usuário:
+      user.email = email
+      await user.save()
 
-    //Cria o link para ser enviado por e-mail:
-    const link = `${redirectUrl.replace(/\/$/, '')}/${key}`
-    /* replace(/\/$/, '') -> Expressão regular a qual
-    remove a barra / por uma string vazia,
-    se a / já existir, evitando de que a URL
-    fique inválida pela / duplicada, como:
-    "facebook//register" */
+      //Pega os relacionamentos do user e uma nova key:
+      const key = faker.datatype.uuid() + user.id
+      user.related('keys').create({ key })
 
-    /* Envia o link por e-mail (com estilização já criada):
-    Graças ao Adonis ser um MVC, e possuir a camada View + 
-    os partials (estilizações individuais, presentes na pasta '@/resources' */
-    await Mail.send((message) => {
-      message.to(email)
-      message.from('contato@facebookclone.com', 'Thiago - FacebookAdmin')
-      message.subject('Criação de conta')
-      //Onde está a view, estilização do e-mail:
-      message.htmlView('emails/register', { link })
+      //Cria o link para ser enviado por e-mail:
+      const link = `${redirectUrl.replace(/\/$/, '')}/${key}`
+      /* replace(/\/$/, '') -> Expressão regular a qual
+      remove a barra / por uma string vazia,
+      se a / já existir, evitando de que a URL
+      fique inválida pela / duplicada, como:
+      "facebook//register" */
+
+      /* Envia o link por e-mail (com estilização já criada):
+      Graças ao Adonis ser um MVC, e possuir a camada View + 
+      os partials (estilizações individuais, presentes na pasta '@/resources' */
+      await Mail.send((message) => {
+        message.to(email)
+        message.from('contato@facebookclone.com', 'Thiago - FacebookAdmin')
+        message.subject('Criação de conta')
+        //Onde está a view, estilização do e-mail:
+        message.htmlView('emails/verify-register', { link })
+      })
     })
   }
 

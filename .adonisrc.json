@@ -16,7 +16,8 @@
   },
   "preloads": [
     "./start/routes",
-    "./start/kernel"
+    "./start/kernel",
+    "./start/camelCase"
   ],
   "providers": [
     "./providers/AppProvider",
