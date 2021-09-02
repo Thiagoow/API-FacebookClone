@@ -17,9 +17,9 @@ export default class UserForgotPasswordController {
 
     await Mail.send((message) => {
       message.to(email)
-      message.from('contato@facebook.com', 'Facebook')
+      message.from('contato@facebookclone.com', 'Thiago - FacebookAdmin')
       message.subject('Recuperação de senha')
-      message.htmlView('mails/forgot-password', { link: link })
+      message.htmlView('emails/forgot-password', { link })
     })
   }
 
@@ -29,9 +29,10 @@ export default class UserForgotPasswordController {
 
   public async update({ request }: HttpContextContract) {
     const { key, password } = await request.validate(UpdateValidator)
+
     const userKey = await UserKey.findByOrFail('key', key)
 
-    userKey.load('user')
+    await userKey.load('user')
 
     userKey.user.merge({ password })
 

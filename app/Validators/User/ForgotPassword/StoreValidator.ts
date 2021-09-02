@@ -7,12 +7,11 @@ export default class StoreValidator {
   public schema = schema.create({
     email: schema.string({ trim: true }, [
       rules.email(),
-      rules.unique({ table: 'users', column: 'email' }),
+      //Procura se o e-mail existe na tabela user, na coluna e-mail:
+      rules.exists({ table: 'users', column: 'email' }),
     ]),
     redirectUrl: schema.string({ trim: true }),
   })
-
-  public cacheKey = this.ctx.routeKey
 
   public messages = {}
 }
