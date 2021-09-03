@@ -76,7 +76,7 @@ export default class RegisterController {
     a partir do espaço entre as palavras do seu nome,
     pegando a primeira palavra, + o horário da alteração (para que ele seja
     único :D)*/
-    const username = name.split('')[0].toLocaleLowerCase() + new Date().getTime()
+    const username = name.split(' ')[0].toLocaleLowerCase() + new Date().getTime()
 
     //Atualiza o nome, senha e username do usuário:
     userKey.user.merge({ name, password, username })
