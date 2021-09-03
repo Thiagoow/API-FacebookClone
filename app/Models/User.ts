@@ -1,7 +1,15 @@
 import { DateTime } from 'luxon'
 import Hash from '@ioc:Adonis/Core/Hash'
-import { column, beforeSave, BaseModel, hasMany, HasMany } from '@ioc:Adonis/Lucid/Orm'
-import { UserKey } from 'App/Models'
+import {
+  column,
+  beforeSave,
+  BaseModel,
+  hasMany,
+  HasMany,
+  hasOne,
+  HasOne,
+} from '@ioc:Adonis/Lucid/Orm'
+import { UserKey, File } from 'App/Models'
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })
@@ -52,4 +60,12 @@ export default class User extends BaseModel {
   estar fazendo mais de uma ação na dB ao msm tempo 😊😉 */
   @hasMany(() => UserKey)
   public keys: HasMany<typeof UserKey>
+
+  //Um user possui 1 avatar:
+  @hasOne(() => File, {
+    //Como o arquivo fica salvo na tabela de files, e não de users:
+    foreignKey: 'ownerId',
+    onQuery: (query) => query.where({ fileCategory: 'avatar' }),
+  })
+  public avatar: HasOne<typeof File>
 }
