@@ -1,8 +1,9 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { UpdateValidator } from 'App/Validators/User/Avatar'
-import { Application } from '@ioc:Adonis/Core/Application'
+import Application from '@ioc:Adonis/Core/Application'
 //Para usar no transaction:
 import Database from '@ioc:Adonis/Lucid/Database'
+import fs from 'fs'
 
 export default class UserAvatarController {
   public async update({ request, auth }: HttpContextContract) {
@@ -43,5 +44,22 @@ export default class UserAvatarController {
 
     //Retorna pra API a resposta ;):
     return response
+  }
+
+  public async destroy({ auth }: HttpContextContract) {
+    await Database.transaction(async (trx) => {
+      const user = auth.user!.useTransaction(trx)
+
+      //Consulta se o usuário autenticado possui um avatar:
+      const avatar = await user
+        .related('avatar')
+        .query()
+        .where({ fileCategory: 'avatar' })
+        .firstOrFail()
+
+      //Se sim, deleta, senão, desfaz usando a transaction:
+      await avatar.delete()
+      fs.unlinkSync(Application.tmpPath('uploads', avatar.fileName))
+    })
   }
 }

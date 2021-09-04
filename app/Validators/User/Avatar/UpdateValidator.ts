@@ -13,5 +13,7 @@ export default class StoreValidator {
     }),
   })
 
+  public cacheKey = this.ctx.routeKey
+
   public messages = {}
 }
