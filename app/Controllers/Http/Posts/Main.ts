@@ -25,6 +25,8 @@ export default class PostsMainController {
         query.preload('avatar')
       })
 
+      //Carrega a contagem de quantos comentários há na post:
+      query.withCount('comments')
       //Carrega dos comentários os dados:
       query.preload('comments', (query) => {
         query.select(['userId', 'id', 'content', 'createdAt'])
@@ -33,7 +35,8 @@ export default class PostsMainController {
           query.preload('avatar')
         })
       })
-      //Carrega de cada um dos tipos das reações os dados:
+
+      //Carrega a contagem de cada um dos tipos das reações os dados:
       query.withCount('reactions', (query) => {
         query.where('type', 'like')
         query.as('likeCount')
@@ -54,7 +57,11 @@ export default class PostsMainController {
         query.where('type', 'angry')
         query.as('angryCount')
       })
+
+      //Para saber qual reação o usuário fez em cada post:
       query.preload('reactions', () => {
+        /* Ou seja, reações que possuam um 'userId'
+        igual ao id do user autenticado: */
         query.where('userId', auth.user!.id).first()
       })
     })

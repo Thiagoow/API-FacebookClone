@@ -62,4 +62,25 @@ export default class Post extends BaseModel {
 
   @hasMany(() => Reaction, { serializeAs: null }) //Não mostra o relacionamento das postagens com usuário
   public reactions: HasMany<typeof Reaction>
+
+  @computed()
+  public get countReactions() {
+    return {
+      //Retorna a quantidade das reações OU 0:
+      like: this.$extras.likeCount || 0,
+      love: this.$extras.loveCount || 0,
+      haha: this.$extras.hahaCount || 0,
+      sad: this.$extras.sadCount || 0,
+      angry: this.$extras.angryCount || 0,
+    }
+  }
+
+  //Para exibir qual a reação que o user fez em uma postagem:
+  @computed()
+  public get activeReaction() {
+    /* Se existir uma array de reações e o tamanho dessa 
+    array for > 0 -> Pega o tipo da reação dessa array cuja
+    qual se encontra na 1º posição, ou se não existir, retorna nulo */
+    return this.reactions && this.reactions.length ? this.reactions[0].type : null
+  }
 }
