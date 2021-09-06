@@ -1,12 +1,13 @@
 import BaseSchema from '@ioc:Adonis/Lucid/Schema'
+import { reactionsCategories } from 'App/Utils'
 
-export default class Comments extends BaseSchema {
-  protected tableName = 'comments'
+export default class Reactions extends BaseSchema {
+  protected tableName = 'reactions'
 
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
-      table.text('content', 'longtext')
+      table.enu('type', reactionsCategories)
       table
         .integer('user_id')
         .unsigned()
@@ -19,8 +20,6 @@ export default class Comments extends BaseSchema {
         .references('posts.id')
         .onUpdate('CASCADE')
         .onDelete('CASCADE')
-      table.timestamp('created_at', { useTz: true })
-      table.timestamp('updated_at', { useTz: true })
     })
   }
 
