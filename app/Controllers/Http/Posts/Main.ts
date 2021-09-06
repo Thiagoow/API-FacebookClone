@@ -13,14 +13,15 @@ export default class PostsMainController {
       (await User.findBy('username', username)) || auth.user! /* <- Caso o user autenticado tenha 
     digitado o username errado */
 
-    //Carrega os dados do user buscado:
+    //Carrega do post os dados:
     await user.load('posts', (query) => {
+      //Carrega primeiro os posts mais recentes (id < pro >):
+      query.orderBy('id', 'desc')
+      query.preload('media')
+
+      //Carrega a dB do user os dados:
       query.preload('user', (query) => {
-        //Carrega primeiro os posts mais recentes (id < pro >):
-        query.orderBy('id', 'desc')
-        //Carrega da dB do user os dados:
         query.select(['id', 'name', 'username'])
-        //+ da tabela de files, o avatar do user buscado:
         query.preload('avatar')
       })
     })
