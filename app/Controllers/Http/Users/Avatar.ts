@@ -21,10 +21,10 @@ export default class UserAvatarController {
       o 1º é onde queremos buscar, e o 2º onde queremos criar o arquivo 😁😎 */
       const searchPayload = {} //<- ownerId: user.id
       const savePayload = {
-        //Cria o avatar na categoria:
-        fileCategory: 'avatar' as any,
         //Com o nome único para a dB -> 'XYZ.extensãoDoArquivo':
         fileName: `${new Date().getTime()}.${file.extname}`,
+        //Cria o avatar na categoria:
+        fileCategory: 'avatar' as any,
       }
 
       //Atualiza o avatar do user autenticado:

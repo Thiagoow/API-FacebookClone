@@ -7,9 +7,9 @@ export default class StoreValidator {
   public schema = schema.create({
     file: schema.file({
       //Tamanho máximo de upload:
-      size: '5mb',
+      size: '10mb',
       //Aceita APENAS os arquivos de tipo:
-      extnames: ['jpg', 'png', 'jpeg'],
+      extnames: ['jpg', 'png', 'jpeg', 'svg'],
     }),
   })
 

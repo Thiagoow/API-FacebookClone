@@ -19,7 +19,7 @@ export default class File extends BaseModel {
   //Coluna computada fictícia/não existente na dB:
   @computed()
   public get url(): string {
-    //
+    //Retorna a URL para exibição do arquivo no navegador:
     return `${Env.get('APP_URL')}/uploads/${this.fileName}`
   }
 }
