@@ -24,6 +24,15 @@ export default class PostsMainController {
         query.select(['id', 'name', 'username'])
         query.preload('avatar')
       })
+
+      //Carrega dos comentários os dados:
+      query.preload('comments', (query) => {
+        query.select(['userId', 'id', 'content', 'createdAt'])
+        query.preload('user', (query) => {
+          query.select(['id', 'name', 'username'])
+          query.preload('avatar')
+        })
+      })
     })
 
     //+ Retorna as postagens as quais pertencem a esse usuário:
