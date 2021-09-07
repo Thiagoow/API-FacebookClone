@@ -53,5 +53,13 @@ export default class ConversationsMainController {
   }
 
   //Para apagar uma conversa:
-  public async destroy({}: HttpContextContract) {}
+  public async destroy({ params, auth, response }: HttpContextContract) {
+    const conversation = await Conversation.findOrFail(params.id)
+
+    if (![conversation.userIdOne, conversation.userIdTwo].includes(auth.user!.id)) {
+      return response.unauthorized()
+    }
+
+    await conversation.delete()
+  }
 }

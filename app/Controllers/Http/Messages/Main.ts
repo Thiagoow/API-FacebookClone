@@ -43,5 +43,13 @@ export default class MessagesMainController {
     return message
   }
 
-  public async destroy({}: HttpContextContract) {}
+  public async destroy({ params, auth, response }: HttpContextContract) {
+    const message = await Conversation.findOrFail(params.id)
+
+    if (![message.userIdOne, message.userIdTwo].includes(auth.user!.id)) {
+      return response.unauthorized()
+    }
+
+    await message.delete()
+  }
 }
