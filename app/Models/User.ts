@@ -10,10 +10,20 @@ import {
   HasOne,
   manyToMany,
   ManyToMany,
+  computed,
 } from '@ioc:Adonis/Lucid/Orm'
 import { UserKey, File, Post } from 'App/Models'
 
 export default class User extends BaseModel {
+  /* Exibe (dentro de um objeto "meta") qualquer 
+  informação extra/não presente nesse módulo, 
+  definida por algum controlador:
+  public serializeExtras = true
+  */
+  //Para não termos que usar isso sem personalização
+  //em camelCase, e com todos os atributos dentro do objeto
+  //'meta', usamos as computed() props 😉
+
   @column({ isPrimary: true })
   public id: number
 
@@ -96,4 +106,23 @@ export default class User extends BaseModel {
     pivotRelatedForeignKey: 'following_id',
   })
   public following: ManyToMany<typeof User>
+
+  @computed()
+  public get numPostagens() {
+    return this.$extras.posts_count
+  }
+  @computed()
+  public get numSeguidores() {
+    return this.$extras.followers_count
+  }
+  @computed()
+  public get numSeguindo() {
+    return this.$extras.following_count
+  }
+
+  //Se o user logado está ou não seguindo esse outro user:
+  @computed()
+  public get seguindo() {
+    return this.$extras.isFollowing
+  }
 }
