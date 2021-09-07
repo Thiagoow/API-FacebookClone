@@ -8,15 +8,15 @@ export default class Messages extends BaseSchema {
       table.increments('id')
       table.text('content', 'longtext').notNullable()
       table
-        .integer('user_id_one')
+        .integer('user_id')
         .unsigned()
         .references('users.id')
         .onUpdate('CASCADE')
         .onDelete('CASCADE')
       table
-        .integer('user_id_two')
+        .integer('conversation_id')
         .unsigned()
-        .references('users.id')
+        .references('conversations.id')
         .onUpdate('CASCADE')
         .onDelete('CASCADE')
     })

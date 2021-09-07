@@ -1,5 +1,4 @@
 import BaseSchema from '@ioc:Adonis/Lucid/Schema'
-
 export default class Conversations extends BaseSchema {
   protected tableName = 'conversations'
 
