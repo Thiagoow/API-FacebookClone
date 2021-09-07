@@ -8,6 +8,8 @@ import {
   HasMany,
   hasOne,
   HasOne,
+  manyToMany,
+  ManyToMany,
 } from '@ioc:Adonis/Lucid/Orm'
 import { UserKey, File, Post } from 'App/Models'
 
@@ -72,4 +74,26 @@ export default class User extends BaseModel {
   //Um usuário pode ter VÁRIAS postagens:
   @hasMany(() => Post)
   public posts: HasMany<typeof Post>
+
+  //Seguidores:
+  @manyToMany(() => User, {
+    /* A tabela pivô/dinâmica que mantém o
+    relacionamento de seguidores e usuários é a: */
+    pivotTable: 'follows',
+    //Chave estrangeira:
+    pivotForeignKey: 'following_id',
+    //Se relaciona com a chave também estrangeira:
+    pivotRelatedForeignKey: 'follower_id',
+  })
+  public followers: ManyToMany<typeof User>
+
+  //Seguindo:
+  @manyToMany(() => User, {
+    pivotTable: 'follows',
+    //Chave estrangeira:
+    pivotForeignKey: 'follower_id',
+    //Se relaciona com a chave também estrangeira:
+    pivotRelatedForeignKey: 'following_id',
+  })
+  public following: ManyToMany<typeof User>
 }
