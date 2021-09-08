@@ -4,9 +4,21 @@
     <meta charset="UTF-8" />
     <script src="https://unpkg.com/vue@next"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.min.js"></script>
+  <style>
+    body {
+      background-color: #0e1c33;
+      color: white;
+      text-align: center;
+    }
+  </style>
+  
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app" class="app">
+      <h3>Você está numa rota de testes com
+        <br/> Websocket :D
+      </h3>
+    </div>
 
     <script>
       const app = Vue.createApp({
