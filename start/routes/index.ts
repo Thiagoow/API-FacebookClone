@@ -31,6 +31,9 @@ Route.on('/test').render('test')
 //Rota para utilização do teste de chat e mensagens em tempo real:
 Route.on('/chat').render('chat')
 
+//
+Route.on('/home').render('home')
+
 /*Link user1 -> Usuário admin (Lester):
 http://127.0.0.1:3333/chat?conversationId=3&userId=3&receiverId=4&token=NQ.HvSQ_HqE7PkR99f3QqMIFtlp8jvNiIvo2pRI2-7Tk1KpK3nE227750qg6Som
 */
