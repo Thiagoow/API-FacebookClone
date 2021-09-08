@@ -13,6 +13,11 @@ export default class AppProvider {
 
   public async ready() {
     // App is ready
+    const App = await import('@ioc:Adonis/Core/Application')
+
+    if (App.default.environment === 'web') {
+      await import('../start/socket')
+    }
   }
 
   public async shutdown() {

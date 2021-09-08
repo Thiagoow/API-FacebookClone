@@ -16,6 +16,13 @@ Route.get('/', async () => {
   }
 })
 
-Route.get('/user-register', async ({ view }) => {
-  return view.render('emails/register')
+/* Visualização em .edge do layout dos e-mails a
+serem enviados pro usuário em SMTP: */
+Route.get('/verify-register', async ({ view }) => {
+  return view.render('emails/verify-register')
 })
+Route.get('/forgot-password', async ({ view }) => {
+  return view.render('emails/forgot-password')
+})
+
+Route.on('/test').render('test')
