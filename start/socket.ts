@@ -47,7 +47,7 @@ Ws.start((socket) => {
   socket.on('getOnlineFollowing', async ({ userId }) => {
     const user = await User.findOrFail(userId)
 
-    await user.preload('following', (query) => {
+    await user.load('following', (query) => {
       query.whereIn('following_id', getIds(onlineUsers))
     })
 
