@@ -7,8 +7,8 @@ export default class ConversationsMainController {
     const user = auth.user!
 
     const conversations = await Conversation.query()
-      .where({ userOne: user.id })
-      .orWhere({ userTwo: user.id })
+      .where({ userIdOne: user.id })
+      .orWhere({ userIdTwo: user.id })
       .preload('userOne', (query) => {
         query.whereNot('id', user.id)
         query.preload('avatar')
