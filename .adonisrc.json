@@ -10,15 +10,12 @@
   "exceptionHandlerNamespace": "App/Exceptions/Handler",
   "aliases": {
     "App": "app",
+    "Test": "test",
     "Config": "config",
     "Database": "database",
     "Contracts": "contracts"
   },
-  "preloads": [
-    "./start/routes",
-    "./start/kernel",
-    "./start/camelCase"
-  ],
+  "preloads": ["./start/routes", "./start/kernel", "./start/camelCase"],
   "providers": [
     "./providers/AppProvider",
     "@adonisjs/core",
@@ -27,9 +24,7 @@
     "@adonisjs/view",
     "@adonisjs/mail"
   ],
-  "aceProviders": [
-    "@adonisjs/repl"
-  ],
+  "aceProviders": ["@adonisjs/repl"],
   "metaFiles": [
     {
       "pattern": "resources/views/**/*.edge",

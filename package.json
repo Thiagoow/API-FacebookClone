@@ -9,7 +9,7 @@
     "lint": "eslint . --ext=.ts",
     "format": "prettier --write .",
     "japa": "node -r @adonisjs/assembler/build/register japaFile.ts",
-    "japa:watch": "nodemon --watch 'test/**/*' --ext json,ts --exec npm run japa --quiet"
+    "japa:watch": "nodemon --watch 'test/specs/**/*' --ext json,ts --exec npm run japa --quiet"
   },
   "devDependencies": {
     "@adonisjs/assembler": "^5.3.6",
@@ -23,6 +23,7 @@
     "japa": "^3.1.1",
     "pino-pretty": "^6.0.0",
     "prettier": "^2.3.2",
+    "supertest": "^6.1.6",
     "typescript": "~4.2",
     "youch": "^2.2.2",
     "youch-terminal": "^1.1.1"
