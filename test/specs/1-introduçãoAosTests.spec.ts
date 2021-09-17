@@ -1,3 +1,7 @@
+/* CADA TESTE DENTRO DE UM GRUPO DE UM ARQUIVO PRECISA
+SER TOTALMENTE ISOLADO E INDEPENDENTE DO OUTRO PARA FUNCIONAR!!!!
+Ou seja -> Não podemos definir e usar variáveis no escopo global,
+APENAS no escopo local!! */
 import test from 'japa'
 import { baseURL } from 'Test/utils'
 import { UserFactory } from 'Database/factories'
