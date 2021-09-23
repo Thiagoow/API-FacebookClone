@@ -3,6 +3,16 @@
 <img src="./ReadMeFiles/app.jpg" align="center">
 </div>-->
 
+<!-- Japa tests instructions to put in the bash terminal below:
+
+# Rodar os testes unitários e automáticos com o Japa:
+$ npm run japa
+
+# Rodar os testes e reinicia-los a cada alteração:
+$ npm run japa:watch
+
+ -->
+
 # API com Adonis.js para o projeto -> FacebookClone
 
 <p>Essa API Rest foi feita por: <strong>Thiago Silva Lopes</strong>, em XX/2021.</br>
