@@ -24,22 +24,25 @@ FacebookClone - Clonagem de rede social para integração de FrontEnd + BackEnd<
 
 ## Build Setup
 
-Instale o [Docker Compose](https://docs.docker.com/compose/install/).
+Instale o [Docker Desktop](https://www.docker.com/products/docker-desktop) ou apenas o [Docker Compose](https://docs.docker.com/compose/install).
 
 ```bash
+# Instalar dependências:
+$ yarn install
+
 # Criar o container com MySQL:
 $ docker-compose up -d
 
 # Criar as tabelas/estruturas na dB:
 $ node ace migration:run
 
-# Instalar dependências:
-$ npm install
+# Criar arquivo .env com base no .env.example
+# (SMTP username & password -> Credenciais do mailtrap.io)
 
 # Rodar o servidor local que muda a cada alteração:
-$ npm run dev
+$ yarn dev
 
 # Fazer o build pra produção e executar o servidor:
-$ npm run build
-$ npm run start
+$ yarn build
+$ yarn start
 ```
