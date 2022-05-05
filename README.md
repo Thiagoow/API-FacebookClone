@@ -36,8 +36,7 @@ $ docker-compose up -d
 # Criar as tabelas/estruturas na dB:
 $ node ace migration:run
 
-# Criar arquivo .env com base no .env.example
-# (SMTP username & password -> Credenciais do mailtrap.io)
+# Criar arquivo .env com base no ".env.example"
 
 # Rodar o servidor local:
 $ yarn dev
