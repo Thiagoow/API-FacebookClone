@@ -39,7 +39,7 @@ $ node ace migration:run
 # Criar arquivo .env com base no .env.example
 # (SMTP username & password -> Credenciais do mailtrap.io)
 
-# Rodar o servidor local que muda a cada alteração:
+# Rodar o servidor local:
 $ yarn dev
 
 # Fazer o build pra produção e executar o servidor:
