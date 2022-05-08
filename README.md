@@ -15,7 +15,7 @@ $ npm run japa:watch
 
 # API com Adonis.js para o projeto -> FacebookClone
 
-<p>Essa API Rest foi feita por: <strong>Thiago Silva Lopes</strong>, em XX/2021.</br>
+<p>Essa API Rest foi feita por: <strong>Thiago Silva Lopes</strong>, em 05/2022.</br>
 Tendo como base, as aulas de "Back-end com Adonis", no Bootcamp Full Stack da <a href="https://bootcamp.cataline.io/">Cataline</a>.</br>
 Sendo utilizada no projeto -> <a href="https://github.com/Thiagoow/FrontEnd-FacebookClone">
 FacebookClone - Clonagem de rede social para integração Front End + Back End</a></p>
