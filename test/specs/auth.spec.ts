@@ -2,7 +2,7 @@ import test from 'japa'
 import { baseURL } from 'Test/utils'
 import { UserFactory } from 'Database/factories'
 import Database from '@ioc:Adonis/Lucid/Database'
-import faker from 'faker'
+import faker from '@faker-js/faker'
 
 test.group('Grupo de testes', (group) => {
   /* Usando as transactions e life cycle hooks do

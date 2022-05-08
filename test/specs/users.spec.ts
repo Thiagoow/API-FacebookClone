@@ -2,7 +2,7 @@ import test from 'japa'
 import { baseURL } from 'Test/utils'
 import Database from '@ioc:Adonis/Lucid/Database'
 import Mail from '@ioc:Adonis/Addons/Mail'
-import faker from 'faker'
+import faker from '@faker-js/faker'
 
 test.group('/users/register', (group) => {
   group.beforeEach(async () => {

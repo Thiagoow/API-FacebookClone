@@ -2,7 +2,7 @@ import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { StoreValidator, UpdateValidator } from 'App/Validators/User/ForgotPassword'
 import Mail from '@ioc:Adonis/Addons/Mail'
 import { User, UserKey } from 'App/Models'
-import faker from 'faker'
+import faker from '@faker-js/faker'
 
 export default class UserForgotPasswordController {
   public async store({ request }: HttpContextContract) {

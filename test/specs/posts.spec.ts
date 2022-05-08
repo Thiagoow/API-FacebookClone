@@ -7,7 +7,7 @@ import { baseURL, generateRandomUserToken } from 'Test/utils'
 import { PostFactory, UserFactory } from 'Database/factories'
 import Database from '@ioc:Adonis/Lucid/Database'
 import { Post } from 'App/Models'
-import faker from 'faker'
+import faker from '@faker-js/faker'
 
 //Teste de CRUD das postagens:
 test.group('/posts', (group) => {

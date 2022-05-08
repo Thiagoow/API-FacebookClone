@@ -2,7 +2,7 @@ import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { StoreValidator, UpdateValidator } from 'App/Validators/User/Register'
 import { User, UserKey } from 'App/Models'
 //Gera id únicos e dados falsos/provisórios para testes auto
-import faker from 'faker'
+import faker from '@faker-js/faker'
 //Módulo de e-mails do Adonis:
 import Mail from '@ioc:Adonis/Addons/Mail'
 //Para usar no transaction:

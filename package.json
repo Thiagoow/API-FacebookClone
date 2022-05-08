@@ -13,6 +13,7 @@
   },
   "devDependencies": {
     "@adonisjs/assembler": "^5.3.6",
+    "@faker-js/faker": "^6.3.1",
     "adonis-preset-ts": "^2.1.0",
     "eslint": "^8.14.0",
     "eslint-config-prettier": "^8.3.0",
