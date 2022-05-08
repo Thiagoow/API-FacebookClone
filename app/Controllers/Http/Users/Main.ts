@@ -6,7 +6,7 @@ export default class UsersMainController {
     // Armazena na var user o usuário que DEVE estar autenticado:
     const user = auth.user!
 
-    //Carrega o avatar do user (se nn existir não retorna):
+    //Carrega o avatar do user (se nn existir, retorna null):
     await user.load('avatar')
 
     return user
