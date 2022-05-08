@@ -16,9 +16,9 @@ $ npm run japa:watch
 # API com Adonis.js para o projeto -> FacebookClone
 
 <p>Essa API Rest foi feita por: <strong>Thiago Silva Lopes</strong>, em XX/2021.</br>
-Tendo como base, as aulas de "[Facebook Clone] Back-end com Adonis", no Bootcamp Full Stack da <a href="https://bootcamp.cataline.io/">Cataline</a></br>
+Tendo como base, as aulas de "Back-end com Adonis", no Bootcamp Full Stack da <a href="https://bootcamp.cataline.io/">Cataline</a>.</br>
 Sendo utilizada no projeto -> <a href="https://github.com/Thiagoow/FrontEnd-FacebookClone">
-FacebookClone - Clonagem de rede social para integração de FrontEnd + BackEnd</a></p>
+FacebookClone - Clonagem de rede social para integração Front End + Back End</a></p>
 
 ## Demo: -------
 
@@ -36,7 +36,7 @@ $ docker-compose up -d
 # Criar as tabelas/estruturas na dB:
 $ node ace migration:run
 
-# Criar arquivo .env com base no ".env.example"
+# Criar arquivo ".env" na pasta raiz com base no ".env.example"
 
 # Rodar o servidor local:
 $ yarn dev
