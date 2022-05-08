@@ -7,7 +7,7 @@ export default class UsersMainController {
     const user = auth.user!
 
     //Carrega o avatar do user (se nn existir não retorna):
-    user.load('avatar')
+    await user.load('avatar')
 
     return user
   }
