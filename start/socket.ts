@@ -23,7 +23,8 @@ Ws.start((socket) => {
   })
 })
 
-//Eventos em tempo real com Ws para saber quando os users estão online:
+/*TODO: Live Event with Ws to list users
+online (list on @/resources/home.edge) */
 const onlineUsers: OnlineUser[] = []
 
 Ws.start((socket) => {

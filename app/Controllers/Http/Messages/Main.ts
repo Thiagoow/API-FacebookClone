@@ -43,6 +43,7 @@ export default class MessagesMainController {
     return message
   }
 
+  //TODO: Method destroy to delete message by message id:
   public async destroy({ params, auth, response }: HttpContextContract) {
     const message = await Conversation.findOrFail(params.id)
 

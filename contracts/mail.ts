@@ -9,6 +9,8 @@ declare module '@ioc:Adonis/Addons/Mail' {
   import { MailDrivers } from '@ioc:Adonis/Addons/Mail'
 
   interface MailersList {
-    smtp: MailDrivers['smtp'],
+    /* TODO: Use a free & real SMTP (e-mail
+    Sender) server instead of mailTrap */
+    smtp: MailDrivers['smtp']
   }
 }
