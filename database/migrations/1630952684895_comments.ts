@@ -19,8 +19,8 @@ export default class Comments extends BaseSchema {
         .references('posts.id')
         .onUpdate('CASCADE')
         .onDelete('CASCADE')
-      table.timestamp('created_at', { useTz: true })
-      table.timestamp('updated_at', { useTz: true })
+      table.timestamp('created_at', { useTz: true }).defaultTo(this.now())
+      table.timestamp('updated_at', { useTz: true }).defaultTo(this.now())
     })
   }
 

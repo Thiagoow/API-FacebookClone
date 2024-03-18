@@ -9,11 +9,11 @@ export default class UsersSchema extends BaseSchema {
       table.string('name') /* Não é notNullable pq o usuário 
       só define isso DEPOIS, quando confirma o e-mail*/
       table.string('username').unique()
-      table.string('email').notNullable().unique()
+      table.string('email').notNullable().unique().defaultTo
       table.string('password', 180)
       table.string('remember_me_token').nullable()
-      table.timestamp('created_at', { useTz: true }).notNullable()
-      table.timestamp('updated_at', { useTz: true }).notNullable()
+      table.timestamp('created_at', { useTz: true }).notNullable().defaultTo(this.now())
+      table.timestamp('updated_at', { useTz: true }).notNullable().defaultTo(this.now())
     })
   }
 
